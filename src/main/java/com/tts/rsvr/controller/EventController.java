@@ -13,44 +13,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tts.rsvr.model.User;
-import com.tts.rsvr.service.UserServiceImpl;
+import com.tts.rsvr.model.Event;
+import com.tts.rsvr.service.EventServiceImpl;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/events")
+public class EventController {
 	
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private EventServiceImpl eventServiceImpl;
 	
 	@GetMapping()
-	public List<User> getUsers(){
-		return userServiceImpl.findAll();
+	public List<Event> getEvents(){
+		return eventServiceImpl.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public User getUser(@PathVariable Long id) {
-		return userServiceImpl.findUserById(id);
+	public Event getEvent(@PathVariable Long id) {
+		return eventServiceImpl.findEventById(id);
 	}
 	
 	@PostMapping()
-	public User saveUser(User user) {
-		return userServiceImpl.saveUser(user);
+	public Event saveEvent( Event event) {
+		return eventServiceImpl.saveEvent(event);
 	}
 	
-	//@RequestBody 
+	//@RequestBody
 	
 	@PutMapping("/{id}")
-	public User putUser(@PathVariable Long id, 
-							 User user) {
-		return userServiceImpl.updateUser(id, user);
+	public Event putEvent(@PathVariable Long id, 
+							Event event) {
+		return eventServiceImpl.updateEvent(id, event);
 	}
+	
 	//@RequestBody 
 	
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable Long id) {
-		userServiceImpl.deleteUserById(id);
+	public void deleteEvent(@PathVariable Long id) {
+		eventServiceImpl.deleteEventById(id);
 	}
 
 	// Get all users
